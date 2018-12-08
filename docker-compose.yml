@@ -12,7 +12,7 @@ services:
     - 88:80
     - 8088:8080
     volumes:
-    - /root/.ssh:/root/.ssh
+    - $HOME/.ssh:/root/.ssh
     - $PWD/deploy:/deploy
     volumes_from:
     - playbook
@@ -23,12 +23,12 @@ services:
     network_mode: "service:deploy"
   playbook:
     container_name: deploy-playbook
-    image: wise2c/playbook:v1.12.1
+    image: wise2c/playbook:v1.13.0
     volumes:
     - playbook:/workspace
   yum-repo:
     container_name: deploy-yumrepo
-    image: wise2c/yum-repo:v1.12.1
+    image: wise2c/yum-repo:v1.13.0.1
     ports:
     - 2009:2009 
     restart: always
