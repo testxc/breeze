@@ -1,0 +1,32 @@
+[
+    {
+        "variable": "AddWorkerNodesOnly",
+        "label": "Just add new worker nodes, do not reinstall this cluster",
+        "description": "Existing master nodes will not be updated. Please install docker for new worker nodes at first.",
+        "type": "bool",
+        "default": "false",
+        "required": true
+    },
+    {
+        "variable": "master",
+        "label": "kubernetes master nodes",
+        "description": "hosts to setup kubernetes master nodes",
+        "type": "host",
+        "required": false
+    },
+    {
+        "variable": "worker",
+        "label": "kubenetes worker nodes",
+        "description": "hosts to setup kubernetes worker nodes",
+        "type": "host",
+        "required": false
+    },
+    {
+        "variable": "endpoint",
+        "label": "kubernetes entry point",
+        "description": "IP:port of kubernetes cluster entrypoint (e.g. 192.168.1.100:6444)",
+        "type": "string",
+        "default": "",
+        "required": false
+    }
+]

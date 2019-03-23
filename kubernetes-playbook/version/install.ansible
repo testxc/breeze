@@ -1,0 +1,29 @@
+- name: set up kubernetes master nodes
+  hosts: master
+  user: root
+  vars:
+    path: /var/tmp/wise2c/kubernetes
+
+  tasks:
+  - name: check kubernetes services
+    script: scripts/check_kubelet_kubeproxy.sh
+    register: check_output
+
+  - name: setup master nodes
+    include_tasks: master-node.ansible
+    when: (not (check_output.stdout == True)) and (not (add_worker_node_only == True))
+
+- name: setup kubernetes worker nodes
+  hosts: node
+  user: root
+  vars:
+    path: /var/tmp/wise2c/kubernetes
+
+  tasks:
+  - name: check kubernetes services
+    script: scripts/check_kubelet_kubeproxy.sh
+    register: check_output
+
+  - name: setup worker nodes
+    include_tasks: worker-node.ansible
+    when: not (check_output.stdout == True)

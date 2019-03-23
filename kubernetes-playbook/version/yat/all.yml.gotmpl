@@ -1,0 +1,6 @@
+endpoint: {{ .kubernetes.Inherent.endpoint }}
+registry_endpoint: {{ .harbor.Inherent.endpoint }}
+registry_user: {{ .harbor.Inherent.user }}
+registry_password: {{ .harbor.Inherent.password }}
+registry_project: library
+add_worker_node_only: {{ .kubernetes.Property.AddWorkerNodesOnly }}
